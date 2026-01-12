@@ -19,17 +19,80 @@ By exploring this project, you will learn:
 
 ## 🔧 Setup
 
+### Environment Setup
+
+#### Windows
+
+> **⚠️ Important:** Use official Python from [python.org](https://www.python.org/downloads/windows/) or Windows Store, not MSYS64 Python, to avoid SSL certificate issues.
+
+1. **Verify Python installation:**
+   ```powershell
+   # Check which Python you're using
+   python --version
+   python -c "import sys; print(sys.executable)"
+   
+   # If using MSYS64 Python (path contains 'msys64'), use official Python:
+   # Windows: C:\Program Files\Python3XX\python.exe
+   # Or: C:\Users\YourName\AppData\Local\Microsoft\WindowsApps\python.exe
+   ```
+
+2. **Create virtual environment:**
+   ```powershell
+   python -m venv dial_grounding_env
+   ```
+
+3. **Activate the environment:**
+   ```powershell
+   .\dial_grounding_env\Scripts\Activate.ps1
+   ```
+   
+   Or if using Command Prompt:
+   ```cmd
+   .\dial_grounding_env\Scripts\activate.bat
+   ```
+
+4. **Install dependencies:**
+   ```powershell
+   pip install -r requirements.txt
+   ```
+   
+   If you encounter SSL certificate errors (shouldn't happen with official Python):
+   ```powershell
+   pip install -r requirements.txt --trusted-host pypi.org --trusted-host files.pythonhosted.org --trusted-host pypi.python.org
+   ```
+
+#### Linux/macOS
+
+1. **Create virtual environment:**
+   ```bash
+   python3 -m venv dial_grounding_env
+   ```
+
+2. **Activate the environment:**
+   ```bash
+   source dial_grounding_env/bin/activate
+   ```
+
+3. **Install dependencies:**
+   
+   If you encounter SSL certificate errors, use:
+   ```bash
+   pip install -r requirements.txt --trusted-host pypi.org --trusted-host files.pythonhosted.org --trusted-host pypi.python.org
+   ```
+   
+   Otherwise:
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+### Service Setup
+
 1. **Start the user service:**
    ```bash
    docker-compose up -d
    ```
 
-2. **Install dependencies:**
-   ```bash
-   pip install -r requirements.txt
-   ```
-
-3. **Configure API credentials:**
+2. **Configure API credentials:**
     - Connect to EPAM VPN
     - Get DIAL API key from: https://support.epam.com/ess?id=sc_cat_item&table=sc_cat_item&sys_id=910603f1c3789e907509583bb001310c
     - Set environment variable
